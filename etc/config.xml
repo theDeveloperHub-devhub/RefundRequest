@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <devhub_refundrequest>
+            <devhub_refundrequest_general>
+                <enable>0</enable>
+            </devhub_refundrequest_general>
+            <devhub_refundrequest_config>
+                <popup_title>refund request</popup_title>
+                <title>We are sorry to know that you want a refund, Plase let us know what's wrong?</title>
+                <dropdown_title>Reason for refund</dropdown_title>
+                <option_title>Product is opened</option_title>
+                <detail_title>Faulty or other detail</detail_title>
+            </devhub_refundrequest_config>
+        </devhub_refundrequest>
+    </default>
+</config>

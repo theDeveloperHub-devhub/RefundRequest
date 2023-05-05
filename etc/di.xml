@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Config\Controller\Adminhtml\System\Config\Save">
+        <plugin name="DevHub_RefundRequest_Plugin_Validate" type="DevHub\RefundRequest\Plugin\Validate" />
+    </type>
+    <virtualType name="DevHubRefundRequestFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="DevHubRefundRequestDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">DevHub\RefundRequest\Model\ResourceModel\Request\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">DevHubRefundRequestFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="DevHub\RefundRequest\Model\ResourceModel\Request\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">devhub_refundrequest</argument>
+            <argument name="eventPrefix" xsi:type="string">devhub_refundrequest_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">refundrequest_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">DevHub\Refundrequest\Model\ResourceModel\Request</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="devhub_refundrequest_list_data_source" xsi:type="string">DevHub\RefundRequest\Model\ResourceModel\Request\Grid\Collection</item>
+                <item name="devhub_refundrequest_label_data_source" xsi:type="string">DevHub\RefundRequest\Model\ResourceModel\Label\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DevHubRequestLabelFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="DevHubRequestLabelDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">DevHub\RefundRequest\Model\ResourceModel\Label\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">DevHubRequestLabelFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="DevHub\RefundRequest\Model\ResourceModel\Label\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">devhub_requestlabel</argument>
+            <argument name="eventPrefix" xsi:type="string">devhub_requestlabel_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">requestlabel_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">DevHub\Refundrequest\Model\ResourceModel\Label</argument>
+        </arguments>
+    </type>
+</config>
